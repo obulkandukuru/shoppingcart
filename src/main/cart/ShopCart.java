@@ -44,5 +44,28 @@ public class ShopCart {
 		}
 		return sum;
 	}
+public double getDiscountedNetPrice() {
+		
+		double sum = 0.0;		
+		 // Create a Map to hold two lists of values by item type (ORANGE, APPLE)
+		Map<Name, List<ProductItem>> totalbyItem1 = finalCart.stream().collect(
+				Collectors.groupingBy(ProductItem::getItemtype, Collectors.toList()
+						));
+		
+		for( Entry<ProductItem.Name, List<ProductItem>> entry : totalbyItem1.entrySet() ){
+            if( entry.getKey().equals( ProductItem.Name.ORANGE ) ){
+            	int size = entry.getValue().size();
+            	Double unitPrice = entry.getValue().get(0).getPrice();
+                sum += (size/3)*(2*unitPrice) + (size%3)* (1*unitPrice);
+            }
+            else if( entry.getKey().equals(ProductItem.Name.APPLE)) {
+            	int size = entry.getValue().size();
+            	Double unitPrice = entry.getValue().get(0).getPrice();
+            	 sum += (size/2)*(1*unitPrice) + (size%2)* unitPrice;
+            }
+        }
 	
+		return sum;	
+		
+	}
 }

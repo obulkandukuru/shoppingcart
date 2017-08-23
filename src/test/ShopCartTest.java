@@ -52,6 +52,15 @@ public class ShopCartTest {
 		Assert.assertEquals(3.0, shopCart.getItemCount(), 0);
 
 	}
-		
+	@Test
+	public void testDiscountedNetPrice(){
+		shopCart.addItemToCart(unitItem);
+		shopCart.addItemToCart(unitItem1);
+		shopCart.addItemToCart(unitItem2);		
+		shopCart.addItemToCart(unitItem3);
+		shopCart.addItemToCart(unitItem4);		
+		shopCart.addItemToCart(unitItem5);
+		Assert.assertEquals(1.7, shopCart.getDiscountedNetPrice(), 0);
+	}	
 	
 }
